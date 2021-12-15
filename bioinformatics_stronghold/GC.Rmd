@@ -1,0 +1,89 @@
+---
+title: "Computing GC Content"
+author: "Orr Shomroni"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(kableExtra)
+opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=80),tidy=TRUE)
+```
+
+## Problem
+
+The GC-content of a `r text_spec("DNA string", color = "#0088cc")` is given by the percentage of `r text_spec("symbols", color = "#0088cc")` in the string that are 'C' or 'G'. For example, the GC-content of "AGCTATAG" is 37.5%. Note that the `r text_spec("reverse complement", color = "#0088cc")` of any DNA string has the same GC-content.
+
+DNA strings must be labeled when they are consolidated into a database. A commonly used method of string labeling is called `r text_spec("FASTA format", color = "#0088cc", bold=T)`. In this format, the string is introduced by a line that begins with '>', followed by some labeling information. Subsequent lines contain the string itself; the first line to begin with '>' indicates the label of the next string.
+
+In Rosalind's implementation, a string in FASTA format will be labeled by the ID "Rosalind_xxxx", where "xxxx" denotes a four-digit code between 0000 and 9999.
+
+`r text_spec("Given", color = "#46a546", bold=T)`: At most 10 `r text_spec("DNA strings", color = "#0088cc")` in FASTA format (of length at most 1 `r text_spec("kbp", color = "#0088cc")` each).
+
+`r text_spec("Return", color = "#46a546", bold=T)`: The ID of the string having the highest GC-content, followed by the GC-content of that string. Rosalind allows for a default error of 0.001 in all decimal answers unless otherwise stated; please see the note on `r text_spec("absolute error", color = "#0088cc", bold=T)` below.
+
+## Sample Dataset
+
+```
+>Rosalind_6404
+CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCC
+TCCCACTAATAATTCTGAGG
+>Rosalind_5959
+CCATCGGTAGCGCATCCTTAGTCCAATTAAGTCCCTATCCAGGCGCTCCGCCGAAGGTCT
+ATATCCATTTGTCAGCAGACACGC
+>Rosalind_0808
+CCACCCTCGTGGTATGGCTAGGCATTCAGGAACCGGAGAACGCTTCAGACCAGCCCGGAC
+TGGGAACCTGCGGGCAGTAGGTGGAAT
+```
+
+## Sample Output
+
+```
+Rosalind_0808
+60.919540
+```
+
+```{python}
+def wrap(string):
+  s=''
+  for i in range(0,len(string),80):
+    s+=string[i:i+80]
+    s+='\n'
+  return s
+  
+def gc(s):
+  gc=0
+  for i in range(0,len(s)):
+    if "G" in s[i] or "C" in s[i]:
+      gc+=1
+  return gc
+
+f=open("/home/orr/Dropbox/rosalind/bioinformatics_stronghold/rosalind_gc.txt",'r')
+s=f.readlines()
+dict={}
+key=""
+for i in range(0,len(s),1):
+  if ">" in s[i]:
+    key=s[i].replace("\n","").replace(">","")
+    dict[key]=""
+  else:
+    dict[key]=dict[key]+s[i].replace("\n","")
+    
+maxH="maxH"
+maxGC=0
+for key,val in dict.items():
+  l=float(len(val))
+  gc_count=float(gc(val))
+  gc_content=gc_count/l*100
+  if maxGC<gc_content:
+    maxGC=gc_content
+    maxH=key
+
+string="The sequence with maximum GC content is "+maxH+" with GC content "+str(round(maxGC,6))
+print(wrap(string))
+```
+
+

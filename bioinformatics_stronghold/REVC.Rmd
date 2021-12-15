@@ -1,0 +1,66 @@
+---
+title: "Complementing a Strand of DNA"
+author: "Orr Shomroni"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(kableExtra)
+opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=80),tidy=TRUE)
+```
+
+## Problem
+
+In `r text_spec("DNA strings", color = "#0088cc")`, `r text_spec("symbols", color = "#0088cc")` 'A' and 'T' are complements of each other, as are 'C' and 'G'.
+
+The `r text_spec("reverse complement", color = "#0088cc", bold=T)` of a `r text_spec("DNA string", color = "#0088cc")` _s_ is the string _s_^_c_^ formed by reversing the symbols of _s_, then taking the complement of each symbol (e.g., the reverse complement of "GTCA" is "TGAC").
+
+`r text_spec("Given", color = "#46a546", bold=T)`: A DNA string _s_ of length at most 1000 `r text_spec("bp", color = "#0088cc")`.
+
+`r text_spec("Return", color = "#46a546", bold=T)`: The reverse complement _s_^_c_^ of _s_.
+
+## Sample Dataset
+
+```
+AAAACCCGGT
+```
+
+## Sample Output
+
+```
+ACCGGGTTTT
+```
+
+```{python}
+def wrap(string):
+    s=''
+    for i in range(0,len(string),80):
+        s+=string[i:i+80]
+        s+='\n'
+    return s
+  
+def comp(string):
+  if string=="A":
+    return "T"
+  elif string=="C":
+    return "G"
+  elif string=="G":
+    return "C"
+  elif string=="T":
+    return "A"
+  else:
+    return
+
+f=open("/home/orr/Dropbox/rosalind/bioinformatics_stronghold/rosalind_revc.txt",'r')
+s=f.readlines()[0].replace("\n","")
+sc=""
+for i in range((len(s)-1),-1,-1):
+  sc=sc+comp(s[i])
+  
+string="The reverse complement of the DNA string s is "+sc
+print(wrap(string))
+```

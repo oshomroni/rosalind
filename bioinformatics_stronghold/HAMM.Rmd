@@ -1,0 +1,54 @@
+---
+title: "Counting Point Mutations"
+author: "Orr Shomroni"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(kableExtra)
+opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=80),tidy=TRUE)
+```
+
+## Problem
+
+Given two `r text_spec("strings", color = "#0088cc")` _s_ and _t_ of equal length, the `r text_spec("Hamming distance", color = "#0088cc", bold=T)` between _s_ and _t_, denoted $d_H(s,t)$, is the number of corresponding symbols that differ in _s_ and _t_. See Figure 2.
+
+`r text_spec("Given", color = "#46a546", bold=T)`: Two `r text_spec("DNA strings", color = "#0088cc")` _s_ and _t_ of equal length (not exceeding 1 `r text_spec("kbp", color = "#0088cc")`).
+
+`r text_spec("Return", color = "#46a546", bold=T)`: The Hamming distance $d_H(s,t)$.
+
+## Sample Dataset
+
+```
+GAGCCTACTAACGGGAT
+CATCGTAATGACGGCCT
+```
+
+## Sample Output
+
+```
+7
+```
+
+```{python}
+def wrap(string):
+    s=''
+    for i in range(0,len(string),80):
+        s+=string[i:i+80]
+        s+='\n'
+    return s
+
+f=open("/home/orr/Dropbox/rosalind/bioinformatics_stronghold/rosalind_hamm.txt",'r')
+s=f.readlines()
+dH=0
+for i in range(0,(len(s[0])-1),1):
+  if s[0][i]!=s[1][i]:
+    dH+=1
+  
+string="The Hamming distance between string s "+s[0].replace("\n","")+" and string t "+s[1].replace("\n","")+ " is "+str(dH)
+print(wrap(string))
+```
