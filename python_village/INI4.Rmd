@@ -1,0 +1,42 @@
+---
+title: "Conditions and Loops"
+author: "Orr Shomroni"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=80),tidy=TRUE)
+```
+
+## Problem
+
+**Given**: Two positive integers _a_ and _b_ (_a_<_b_<10000).
+
+**Return**: The sum of all odd integers from _a_ through _b_, inclusively.
+
+## Sample Dataset
+
+```
+100 200
+```
+
+## Sample Output
+
+```
+7500
+```
+
+```{python}
+a = 4836
+b = 9238
+sum = 0
+for i in range(a,b):
+  if i % 2 == 1:
+    sum=sum+i
+
+print('The sum of odd integers between a and b is',sum)
+```

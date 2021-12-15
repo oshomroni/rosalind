@@ -1,0 +1,41 @@
+---
+title: "Variables and Some Arithmetic"
+author: "Orr Shomroni"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=80),tidy=TRUE)
+```
+
+## Problem
+
+**Given**: Two positive integers _a_ and _b_, each less than 1000.
+
+**Return**: The integer corresponding to the square of the hypotenuse of the right triangle whose legs have lengths _a_ and _b_.
+
+## Notes:
+1. The dataset changes every time you click "Download dataset".
+
+2. We check only your final answer to the downloaded dataset in the box below, not your code itself. If you would like to provide your code as well, you may use the upload tool. Please also note that the correct answer to this problem will not in general be 34; it is simply an example of what you should return in the specific case that the legs of the triangle have length 3 and 5.
+
+## Sample Dataset
+```
+3 5
+```
+
+## Sample Output
+```
+34
+```
+
+```{python}
+Number1 = 822
+Number2 = 996
+Number3 = Number1*Number1+Number2*Number2
+print('The square of the hypotenuse of the right triangle whose legs have lengths',Number1,'and',Number2,'is', Number3)
+```

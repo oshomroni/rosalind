@@ -1,0 +1,43 @@
+---
+title: "Strings and Lists"
+author: "Orr Shomroni"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=80),tidy=TRUE)
+```
+
+## Problem
+
+**Given**: A string _s_ of length at most 200 letters and four integers _a_, _b_, _c_ and _d_.
+
+**Return**: The slice of this string from indices _a_ through _b_ and _c_ through _d_ (with space in between), _inclusively_. In other words, we should include elements _s_[_b_] and _s_[_d_] in our slice.
+
+## Sample Dataset
+
+```
+HumptyDumptysatonawallHumptyDumptyhadagreatfallAlltheKingshorsesandalltheKingsmenCouldntputHumptyDumptyinhisplaceagain
+```
+```
+22 27 97 102
+```
+
+## Sample Output
+
+```
+Humpty Dumpty
+```
+
+```{python}
+s = "Rpm41WZAPqeRencLlOqXTeKgv7x5pl5kBwcoKQaTcIGAn29unIp25aLieZvPhyllopneusteu927cnXC2Ug9sEiekxX2VgfBDxzz1Mmr3bLIehUUtKHrmW3QjaspideaoJwkiR7va32W9vdWhVXESTREwnbeGRQPRNuUAy6gBqvJKZPEL8i"
+a = 59
+b = 71
+c = 120
+d = 127
+print('The strings sliced between a and b and between c and d are',s[a:(b+1)],s[c:(d+1)])
+```
