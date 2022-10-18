@@ -1,0 +1,58 @@
+---
+title: "Finding a Motif in DNA"
+author: "Orr Shomroni"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(kableExtra)
+opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=80),tidy=TRUE)
+```
+
+## Problem
+
+Given two `r text_spec("strings", color = "#0088cc")` ***s*** and ***t***, ***t*** is a `r text_spec("substring", color = "#0088cc", bold=T)` of ***s*** if ***t*** is contained as a contiguous collection of symbols in ***s*** (as a result, ***t*** must be no longer than ***s***).
+
+The `r text_spec("position", color = "#0088cc", bold=T)` of a symbol in a string is the total number of symbols found to its left, including itself (e.g., the positions of all occurrences of 'U' in "AUGCUUCAGAAAGGUCUUACG" are 2, 5, 6, 15, 17, and 18). The symbol at position ***i*** of ***s*** is denoted by ***s***[***i***].
+
+A substring of ***s*** can be represented as $s[j:k]$, where ***j*** and ***k*** represent the starting and ending positions of the substring in ***s***; for example, if ***s*** = "AUGCUUCAGAAAGGUCUUACG", then $s[2:5]$ = "UGCU".
+
+The `r text_spec("location", color = "#0088cc", bold=T)` of a substring $s[j:k]$ is its beginning `r text_spec("position", color = "#0088cc")` ***j***; note that ***t*** will have multiple locations in ***s*** if it occurs more than once as a substring of ***s*** (see the Sample below).
+
+`r text_spec("Given", color = "#46a546", bold=T)`: Two `r text_spec("DNA strings", color = "#0088cc")` ***s*** and ***t*** (each of length at most 1 `r text_spec("kbp", color = "#0088cc")`).
+
+`r text_spec("Return", color = "#46a546", bold=T)`: All locations of ***t*** as a substring of ***s***.
+
+## Sample Dataset
+
+`GATATATGCATATACTT`
+
+`ATAT`
+
+## Sample Output
+
+`2 4 10`
+
+```{python}
+f=open("rosalind_subs.txt",'r')
+s=f.readlines()[0].replace("\n","")
+f=open("rosalind_subs.txt",'r')
+t=f.readlines()[1].replace("\n","")
+if len(s)<len(t):
+  print("Error: length of substring ",t," is longer than ",s)
+  exit()
+
+motifLoci=[]
+for i in range(0,len(s)-len(t)):
+  tmpText=s[i:i+len(t)]
+  if tmpText==t:
+    motifLoci.append(i+1)
+
+print("String: "+s)
+print("Substring: "+t)
+print("Locations of motifs: "+str(motifLoci))
+```
