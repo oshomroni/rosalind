@@ -1,2 +1,9 @@
-# rosalind
-Scripts used to solve problems from Rosalind
+# Practicing (bioinformatic) algorithms
+
+This repository contains scripts solving various algorithmic and bioinformatic problems appearing on [Rosalind website](https://rosalind.info/problems/locations/). The scripts are written in Rmarkdown for documentation purposes but using Python code to solve the problems. It divides into 5 categories:
+
+1.  [***Python Village***](https://rosalind.info/problems/list-view/?location=python-village): If you are completely new to programming, try these initial problems to learn a few basics about the Python programming language. You'll get familiar with the operations needed to start solving bioinformatics challenges in the Stronghold.
+2.  [***Bioinformatics Stronghold***](https://rosalind.info/problems/list-view/?location=bioinformatics-stronghold): Discover the algorithms underlying a variety of bioinformatics topics: computational mass spectrometry, alignment, dynamic programming, genome assembly, genome rearrangements, phylogeny, probability, string algorithms and others.
+3.  [***Bioinformatics Armory***](https://rosalind.info/problems/list-view/?location=bioinformatics-armory): Ready-to-use software tools abound for bioinformatics analysis. Whereas in the Stronghold you implement algorithms on your own, in the Armory you solve similar problems by using existing tools.
+4.  [***Bioinformatics Textbook Track***](https://rosalind.info/problems/list-view/?location=bioinformatics-textbook-track): A collection of exercises to accompany Bioinformatics Algorithms: An Active-Learning Approach by Phillip Compeau & Pavel Pevzner. A full version of this text is hosted on stepic.org
+5.  [***Algorithmic Heights***](https://rosalind.info/problems/list-view/?location=algorithmic-heights): A collection of exercises in introductory algorithms to accompany "Algorithms", the popular textbook by Dasgupta, Papadimitriou, and Vazirani.
