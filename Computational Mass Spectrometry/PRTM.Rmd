@@ -1,0 +1,50 @@
+---
+title: "Calculating Protein Mass"
+author: "Orr Shomroni"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(kableExtra)
+opts_chunk$set(echo = TRUE,tidy.opts=list(width.cutoff=80),tidy=TRUE)
+```
+
+## Problem
+
+In a `r text_spec("weighted alphabet", color = "#0088cc", bold=T)`, every symbol is assigned a positive real number called a `r text_spec("weight", color = "#0088cc", bold=T)` A string formed from a weighted alphabet is called a `r text_spec("weighted string", color = "#0088cc", bold=T)`, and its `r text_spec("weight", color = "#0088cc", bold=T)` is equal to the sum of the weights of its symbols.
+
+The standard weight assigned to each member of the 20-symbol amino acid alphabet is the monoisotopic mass of the corresponding amino acid.
+
+`r text_spec("Given", color = "#46a546", bold=T)`: A protein string ***P*** of length at most 1000 `r text_spec("aa", color = "#0088cc", bold=F)`.
+
+`r text_spec("Return", color = "#46a546", bold=T)`: The total weight of ***P***. Consult the `r text_spec("monoisotopic mass table", color = "#0088cc", bold=T)`.
+
+## Sample Dataset
+
+`SKADYEK`
+
+## Sample Output
+
+`821.392`
+
+```{python}
+f=open("rosalind_prtm.txt",'r')
+s=f.readlines()[0].replace("\n","")
+if len(s)<len(t):
+  print("Error: length of substring ",t," is longer than ",s)
+  exit()
+
+motifLoci=[]
+for i in range(0,len(s)-len(t)):
+  tmpText=s[i:i+len(t)]
+  if tmpText==t:
+    motifLoci.append(i+1)
+
+print("String: "+s)
+print("Substring: "+t)
+print("Locations of motifs: "+str(motifLoci))
+```
